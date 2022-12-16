@@ -1,2 +1,1 @@
-# Integration-between-Zendesk-and-okta
-Create a user by Zendesk request
+This script used to automate the process of creating users in Okta based on tickets in Zendesk. It allows only certain approved users to approve the creation of a user, and uses custom fields on the ticket to determine the details for the user to be created in Okta. It also updates the ticket with comments indicating the status of the user creation process and, if successful, marks the ticket as solved.
