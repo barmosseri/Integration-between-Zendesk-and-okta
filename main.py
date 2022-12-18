@@ -51,3 +51,5 @@ for ticket in tickets:
     else:
         zendesk_client.tickets.create_comment(ticket['id'], {'body': 'The request wasn't approved', 'public': True})
 		zendesk_client.tickets.update(id=ticket['id'], status='on-hold')
+							   
+print(__name__, type(__name__))
