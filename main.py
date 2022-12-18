@@ -5,7 +5,7 @@ from okta.models.user import User
 from okta.client import Client
 
 APPROVED_USER_GROUP_ID = [1234, 5678]
-secrets_client = boto3.client('secretsmanager')
+secrets_client = boto3.client('secretsmanager', region_name='XXX'))
 zendesk_token_secret = secrets_client.get_secret_value(SecretId='ZENDESK_TOKEN')
 zendesk_token = zendesk_token_secret['SecretString']
 okta_token_secret = secrets_client.get_secret_value(SecretId='OKTA_TOKEN')
