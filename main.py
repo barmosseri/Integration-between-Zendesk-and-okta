@@ -11,11 +11,11 @@ from okta.models import UserProfile
 from zenpy import Zenpy
 from zenpy.lib.api_objects import CustomField, Ticket, Comment
 
-APPROVED_USER_GROUP_ID = [10506817039505, 1900000688113]
-first_name_field_id = 4413963262609
-last_name_field_id = 8636631843729
-email_field_id = 360022958317
-organization_field_id = 11522783200529
+APPROVED_USER_GROUP_ID = [XXX, XXX]
+first_name_field_id = XXX
+last_name_field_id = XXX
+email_field_id = XXX
+organization_field_id = XXX
 
 client = boto3.client('secretsmanager')
 zendesk_secret_value = client.get_secret_value(SecretId='Zendesk_API_Key')
@@ -29,7 +29,7 @@ zendesk_creds = {
     "subdomain": "{Your_Subdomain}"
 }
 zendesk_client = Zenpy(**zendesk_creds)
-ticket_form = zendesk_client.ticket_forms(id=4414402109457)
+ticket_form = zendesk_client.ticket_forms(id={Form_ID})
 
 config = {
     'orgUrl': '{Your_Okta_Url}',
@@ -43,9 +43,9 @@ for ticket in zendesk_client.search(subject='{Your_Subject}', status='Open'):
     continue
 
 for ticket in tickets:
-    if ticket.ticket_form_id != 4414402109457:
-        ticket.comment = Comment(body="The type of this ticket is incorrect. Please select 'OKTA - Access' in the form field.", public=True)
-        ticket.custom_status_id = 4205178
+    if ticket.ticket_form_id != {Form_ID}:
+        ticket.comment = Comment(body="The type of this ticket is incorrect.", public=True)
+        ticket.custom_status_id = {Status_ID}
         zendesk_client.tickets.update(ticket)
     else:
          continue
@@ -67,7 +67,7 @@ if ticket.custom_fields:
 
 if not all_required_fields_filled:
     ticket.comment = Comment(body="Please make sure that you filled in all the required fields.", public=True)
-    ticket.custom_status_id = 4205178
+    ticket.custom_status_id = {Status_ID}
     zendesk_client.tickets.update(ticket)
 else:
     for field in ticket.custom_fields:
@@ -99,7 +99,7 @@ async def main(user_email, ticket, okta_client):
                     if user is not None:
                         await okta_client.reset_password(user_email)
                         ticket.comment = Comment(body="The user already exists. A reset password email has been sent.", public=True)
-                        ticket.custom_status_id = 4205198
+                        ticket.custom_status_id = {Status_ID}
                         zendesk_client.tickets.update(ticket)
                     else:
                         for ticket in tickets:
@@ -125,7 +125,7 @@ async def main(user_email, ticket, okta_client):
                                 print(user_data['profile'])
                                 await okta_client.create_user(user_data)
                                 ticket.comment = Comment(body="The user has been created.", public=True)
-                                ticket.custom_status_id = 4205198
+                                ticket.custom_status_id = {Status_ID}
                                 zendesk_client.tickets.update(ticket)
                             else:
                                 raise Exception(f"Failed to create user: {resp.status} {await resp.text()}")    
