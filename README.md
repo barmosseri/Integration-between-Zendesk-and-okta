@@ -1,6 +1,6 @@
 ![Okta 2 Zendesk](https://i.ibb.co/cQyr7Kf/Zendesk2-Okta.jpg)
 
-Project Status: Active – The project has reached a stable, usable state and is being actively developed.(https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+Project Status: Active – The project has reached a stable, usable state and is being actively developed.
 
 # Zendesk 2 Okta
 
