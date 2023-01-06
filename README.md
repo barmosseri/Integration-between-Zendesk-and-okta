@@ -1,6 +1,7 @@
 ![Okta 2 Zendesk](https://i.ibb.co/cQyr7Kf/Zendesk2-Okta.jpg)
 
 Project Status: Active – The project has reached a stable, usable state and is being actively developed.
+![image](https://user-images.githubusercontent.com/76659584/211010037-f264dc21-57db-4158-b3b6-768ddf93db06.png)
 
 # Zendesk 2 Okta
 
