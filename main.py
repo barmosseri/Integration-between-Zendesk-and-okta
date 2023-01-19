@@ -18,7 +18,7 @@ last_name_field_id = XXX
 email_field_id = XXX
 organization_field_id = XXX
 
-client = boto3.client('secretsmanager', region_name={our-region})
+client = boto3.client('secretsmanager', region_name={your-region})
 zendesk_secret_value = client.get_secret_value(SecretId='Zendesk_API_Key')
 zendesk_secret_value_json = zendesk_secret_value['SecretString']
 zendesk_secret_value = json.loads(zendesk_secret_value_json)
