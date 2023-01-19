@@ -1,4 +1,5 @@
 import boto3
+import json
 import asyncio
 import aiohttp
 import okta
@@ -17,11 +18,16 @@ last_name_field_id = XXX
 email_field_id = XXX
 organization_field_id = XXX
 
-client = boto3.client('secretsmanager')
+client = boto3.client('secretsmanager', region_name={our-region})
 zendesk_secret_value = client.get_secret_value(SecretId='Zendesk_API_Key')
+zendesk_secret_value_json = zendesk_secret_value['SecretString']
+zendesk_secret_value = json.loads(zendesk_secret_value_json)
+zendesk_api_key = zendesk_secret_value['Zendesk_API_Key']
+
 okta_secret_value = client.get_secret_value(SecretId='Okta_API_Key')
-zendesk_token = zendesk_secret_value['Token']
-okta_token = okta_secret_value['Token']
+okta_secret_value_json = okta_secret_value['SecretString']
+okta_secret_value = json.loads(okta_secret_value_json)
+okta_api_key = okta_secret_value['Okta_API_Key']
 
 zendesk_creds = {
     "email": "{Your_Email}",
@@ -38,7 +44,7 @@ config = {
 okta_client = OktaClient(config)
 
 tickets = []
-for ticket in zendesk_client.search(subject='{Your_Subject}', status='Open'):
+for ticket in zendesk_client.search(subject='{Your_Subject}', status={Ticket_status})
     tickets.append(ticket)
     continue
 
