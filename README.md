@@ -24,7 +24,7 @@ In summary, this script provides a comprehensive and automated solution for the 
 ## Support
 
 * Email: barmosseri@gmail.com
-* Linkedin: https://www.linkedin.com/in/barmosseri/
+* Linkedin: https://www.linkedin.com/in/barmosseri
 
 ## License
 
